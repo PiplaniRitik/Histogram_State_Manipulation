@@ -20,31 +20,31 @@ Features
  * Proper error handling and File size kept < 80 lines keeping in mind production based linting and standards.
 
 
-Getting Started
-  Prerequisites
-    * Python 3.7 or later
-    * pip
-    * Virtual environment (optional but recommended)
+Getting Started : 
+Prerequisites
+* Python 3.7 or later
+* pip
+* Virtual environment (optional but recommended)
 
-  Installation
-    * Clone the repository.
-    * Create a virtual environment.
-    * Install dependencies mentioned in requirements.txt.
+Installation : 
+* Clone the repository.
+* Create a virtual environment.
+* Install dependencies mentioned in requirements.txt.
 
-Usage
-  Running the Application
-    * run the following command in your project directory: uvicorn app.main:app --reload
+Usage :
+Running the Application :
+* run the following command in your project directory: uvicorn app.main:app --reload
 
-API Endpoints
-   /insertSamples: Endpoint to insert samples.
-   /metrics: Endpoint to retrieve metrics.
+API Endpoints :
+* /insertSamples: Endpoint to insert samples.
+*  /metrics: Endpoint to retrieve metrics.
 
 Configuration
-  create a .env file with content: INTERVAL_FILE_PATH=intervals.txt
+* create a .env file with content: INTERVAL_FILE_PATH=intervals.txt
 
 Testing
-  run the following command to run tests : python -m unittest app.tests.test_main
+* run the following command to run tests : python -m unittest app.tests.test_main
 
-  Using Postman :
-   http://127.0.0.1:8000/metrics under GET and use respective port your server is working on (may be 8000 or other)
-   http://127.0.0.1:8000/insertSamples under POST with raw data as JSON format like {sample=[1,2,3,4]}
+Using Postman :
+* http://127.0.0.1:8000/metrics under GET and use respective port your server is working on (may be 8000 or other)
+* http://127.0.0.1:8000/insertSamples under POST with raw data as JSON format like {sample=[1,2,3,4]}
