@@ -47,6 +47,7 @@ class Histogram:
             raise ValueError("Internal server error. Overlapping intervals found. Please correct the intervals in intervals.txt file.")
 
         for sample in samples:
+           with self.lock:
             index = self.binary_search_interval(sample)
             if index is not None:
                 self.counts[tuple(self.intervals[index])] += 1 # to increase the frequency
@@ -56,8 +57,9 @@ class Histogram:
             else:
                 self.outliers.append(sample) # to update outliers list
         if not self.valid_samples_total_count == 0:
-            self.mean = self.valid_samples_total_sum / self.valid_samples_total_count # to store mean
-            self.variance = (self.valid_samples_square_sum / self.valid_samples_total_count) - (self.mean * self.mean) # to store variance
+            with self.lock:
+                self.mean = self.valid_samples_total_sum / self.valid_samples_total_count # to store mean
+                self.variance = (self.valid_samples_square_sum / self.valid_samples_total_count) - (self.mean * self.mean) # to store variance
 
     def calculate_statistics(self):
         if self.isInvalidInterval :

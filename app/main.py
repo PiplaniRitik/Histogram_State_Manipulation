@@ -23,9 +23,9 @@ async def insert_samples(input_data: SampleInput):
     try:
         if not intervals:
             raise HTTPException(status_code=500, detail="Internal Server Error. No intervals found. Some issue with intervals.txt")
-        with histogram.lock:
-            histogram.insert_samples(input_data.samples)
-            return {"message": "Samples inserted successfully"}
+       
+        histogram.insert_samples(input_data.samples)
+        return {"message": "Samples inserted successfully"}
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
 
@@ -34,10 +34,10 @@ async def get_metrics():
     try:
         if not intervals:
             raise HTTPException(status_code=500, detail="Internal Server Error. No intervals found. Some issue with intervals.txt")
-        with histogram.lock:
-            metrics_data = histogram.calculate_statistics()
-            if not metrics_data:
-                raise HTTPException(status_code=404, detail="No data available")
-            return metrics_data
+        
+        metrics_data = histogram.calculate_statistics()
+        if not metrics_data:
+            raise HTTPException(status_code=404, detail="No data available")
+        return metrics_data
     except ValueError as e:
         raise HTTPException(status_code=500, detail=str(e))
